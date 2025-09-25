@@ -1,10 +1,12 @@
+
+import { ReactNode } from 'react';
 import { Header } from '@/components/app-sidebar-nav';
 
 export default function AuthenticatedLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: ReactNode;
+}) {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />

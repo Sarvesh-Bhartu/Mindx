@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -7,22 +8,11 @@ import {
   Trophy,
   BotMessageSquare,
   Users,
-  LogOut,
   Menu,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from './ui/dropdown-menu';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { cn } from '@/lib/utils';
 
@@ -36,7 +26,6 @@ const menuItems = [
 
 export function Header() {
   const pathname = usePathname();
-  const userAvatar = PlaceHolderImages.find((p) => p.id === 'user-avatar-1');
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
@@ -55,9 +44,7 @@ export function Header() {
                 href={item.href}
                 className={cn(
                   'transition-colors hover:text-foreground/80',
-                  pathname === item.href
-                    ? 'text-foreground'
-                    : 'text-foreground/60'
+                  pathname.startsWith(item.href) ? 'text-foreground' : 'text-foreground/60'
                 )}
               >
                 {item.label}
@@ -89,9 +76,7 @@ export function Header() {
                   href={item.href}
                   className={cn(
                     'flex items-center gap-2 rounded-md p-2 text-sm font-medium',
-                    pathname === item.href
-                      ? 'bg-accent text-accent-foreground'
-                      : 'hover:bg-accent'
+                     pathname.startsWith(item.href) ? 'bg-accent text-accent-foreground' : 'hover:bg-accent'
                   )}
                 >
                   <item.icon className="h-5 w-5" />
@@ -103,37 +88,7 @@ export function Header() {
         </Sheet>
 
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                <Avatar className="h-9 w-9">
-                  <AvatarImage
-                    src={userAvatar?.imageUrl}
-                    alt="User Avatar"
-                    data-ai-hint={userAvatar?.imageHint}
-                  />
-                  <AvatarFallback>AT</AvatarFallback>
-                </Avatar>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end" forceMount>
-              <DropdownMenuLabel className="font-normal">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">Alex Turner</p>
-                  <p className="text-xs leading-none text-muted-foreground">
-                    alex.turner@example.com
-                  </p>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link href="/">
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* User profile button removed */}
         </div>
       </div>
     </header>

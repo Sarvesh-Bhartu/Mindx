@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
+
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'mindX Agent',
   description: 'Your personal AI wellness companion.',
 };
